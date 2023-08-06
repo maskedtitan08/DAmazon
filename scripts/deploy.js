@@ -23,7 +23,7 @@ async function main() {
       items[i].name,
       items[i].category,
       items[i].image,
-      ethers.parseEther(items[i].price.toString()),    // parsing ethers to convert ethers into wei whcih can be stored in contract
+      ethers.parseEther(items[i].price.toString(),'ether'),    // parsing ethers to convert ethers into wei whcih can be stored in contract
       items[i].rating,
       items[i].stock,
     )

@@ -86,7 +86,8 @@ const Product = ({ item, provider, account, contract, togglePop }) => {
                         <h2>{item.name}</h2>
                         <Rating value={item.rating} />
                         <hr />
-                        <h2>{ethers.parseEther(item.cost.toString(), 'ether')} ETH</h2>
+                        {/* <h2>{ethers.parseEther(item.cost.toString(), 'ether')} ETH</h2> */}
+                        <h2>{ethers.formatEther(item.cost.toString(), 'ether')} ETH</h2>
                         <h2>Overview</h2>
                         <p>
                             {item.description}
@@ -94,7 +95,8 @@ const Product = ({ item, provider, account, contract, togglePop }) => {
 
                     </div>
                     <div className="product__order">
-                        <h2>{ethers.parseEther(item.cost.toString(), 'ether')} ETH</h2>
+                        {/* <h2>{ethers.parseEther(item.cost.toString(), 'ether')} ETH</h2> */}
+                        <h2>{ethers.formatEther(item.cost.toString(), 'ether')} ETH</h2>
                         <p>
                             FREE delivery <br />
                             <strong>

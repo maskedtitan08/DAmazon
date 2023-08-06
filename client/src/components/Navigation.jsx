@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 import DAmazon from "../artifacts/contracts/DAmazon.sol/DAmazon.json"
 
-const Navigation = ({ account, setAccount, setContract,setProvider }) => {
+const Navigation = ({ account, setAccount, setContract, setProvider }) => {
     const [connected, setConnected] = useState(true);
     const loadWeb3 = async () => {
         let signer = null;
@@ -15,22 +15,30 @@ const Navigation = ({ account, setAccount, setContract,setProvider }) => {
             const provider = new ethers.BrowserProvider(window.ethereum);
             console.log(provider);
             setProvider(provider);
-            window.ethereum.on("chainChanged", () => {           // when chain changed window reload
-                window.location.reload();
-            });                                                     // these scripts are provided by metamask taaki hm jb bhi account change krein to automatically site pr refresh ho jaaye
+            const chainId = 43113;
+            const network = await provider.getNetwork();
 
-            window.ethereum.on("accountsChanged", () => {        // when account change window relaod
-                window.location.reload();
-            });
-            signer = await provider.getSigner();
-            const account = await signer.getAddress();
-            setAccount(account);
-            setConnected(false);
-            // console.log(account);
-            const contractAddress = "0xC51C23b2742Dc44aE4eabD67739fb44F843142B3";
-            const contract = new ethers.Contract(contractAddress, DAmazon.abi, signer);
-            
-            setContract(contract);
+            if (network.chainId == chainId) {
+                window.ethereum.on("chainChanged", () => {
+                    window.location.reload();
+                });
+
+                window.ethereum.on("accountsChanged", () => {
+                    window.location.reload();
+                });
+                signer = await provider.getSigner();
+                const account = await signer.getAddress();
+                setAccount(account);
+                setConnected(false);
+                // console.log(account);
+                const contractAddress = "0xC51C23b2742Dc44aE4eabD67739fb44F843142B3";
+                const contract = new ethers.Contract(contractAddress, DAmazon.abi, signer);
+
+                setContract(contract);
+            }
+            else {
+                alert("connect to avalanche test network");
+            }
             // console.log(contract);
         }
     };
@@ -39,7 +47,7 @@ const Navigation = ({ account, setAccount, setContract,setProvider }) => {
 
     return (
         <nav>
-            <div className='nav_brand'>
+            <div className='nav__brand'>
                 <h1>DAmazon</h1>
             </div>
 

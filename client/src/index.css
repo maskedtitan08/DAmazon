@@ -165,7 +165,7 @@ nav {
 }
 
 .card__image img {
-  max-width: 80%;
+  max-width: 100%;
 }
 
 .card__info {
@@ -335,11 +335,11 @@ nav {
   }
 
   .nav__links {
-    display:block;
+    display: none;
   }
 
   .nav__search {
-    display:flex;
+    display: none;
   }
 }
 
@@ -352,9 +352,4 @@ nav {
   .product__image {
     grid-column: span 2;
   }
-  .product__bought{
-    overflow-y: scroll;
-  }
 }
-
-
