@@ -15,7 +15,7 @@ const Navigation = ({ account, setAccount, setContract, setProvider }) => {
             const provider = new ethers.BrowserProvider(window.ethereum);
             console.log(provider);
             setProvider(provider);
-            const chainId = 43113;
+            const chainId = 80001;
             const network = await provider.getNetwork();
 
             if (network.chainId == chainId) {
@@ -31,13 +31,13 @@ const Navigation = ({ account, setAccount, setContract, setProvider }) => {
                 setAccount(account);
                 setConnected(false);
                 // console.log(account);
-                const contractAddress = "0xC51C23b2742Dc44aE4eabD67739fb44F843142B3";
+                const contractAddress = "0x8eeE2d0fc44C9BD63318D06fd385Fb8A5Db08865";
                 const contract = new ethers.Contract(contractAddress, DAmazon.abi, signer);
 
                 setContract(contract);
             }
             else {
-                alert("connect to avalanche test network");
+                alert("Connect to Polygon Mumbai Testnet");
             }
             // console.log(contract);
         }

@@ -6,7 +6,7 @@ module.exports = {
   solidity: "0.8.18",
   networks:{
     hardhat:{},
-    avalanche:{
+    polygonMumbai:{
       url:process.env.RPC_URL,
       accounts:[process.env.PRIVATE_KEY],
     },
